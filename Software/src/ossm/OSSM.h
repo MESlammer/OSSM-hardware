@@ -118,6 +118,7 @@ class OSSM {
             auto drawUpdating = [](OSSM &o) { o.drawUpdating(); };
             auto stopWifiPortal = [](OSSM &o) { o.wm.stopConfigPortal(); };
             auto drawError = [](OSSM &o) { o.drawError(); };
+            auto drawServoData = [](OSSM &o) {o.drawServoData(); };
 
             auto startWifi = [](OSSM &o) {
                 if (WiFiClass::status() == WL_CONNECTED) {
@@ -180,6 +181,7 @@ class OSSM {
                 "menu.idle"_s + buttonPress[(isOption(Menu::WiFiSetup))] = "wifi"_s,
                 "menu.idle"_s + buttonPress[isOption(Menu::Help)] = "help"_s,
                 "menu.idle"_s + buttonPress[(isOption(Menu::Restart))] = "restart"_s,
+                "menu.idle"_s + buttonPress[(isOption(Menu::ServoData))] = "servodata"_s,
 
                 "simplePenetration"_s [isNotHomed] = "homing"_s,
                 "simplePenetration"_s [isPreflightSafe] / (resetSettings, drawPlayControls, startSimplePenetration) = "simplePenetration.idle"_s,
@@ -215,6 +217,9 @@ class OSSM {
                 "error"_s / drawError = "error.idle"_s,
                 "error.idle"_s + buttonPress / drawHelp = "error.help"_s,
                 "error.help"_s + buttonPress / restart = X,
+
+                "servodata"_s / drawServoData = "servodata.idle"_s,
+                "servodata.idle"_s + buttonPress = "menu"_s,
 
                 "restart"_s / restart = X);
 
@@ -287,6 +292,8 @@ class OSSM {
 
     void drawMenu();
 
+    void drawServoData();
+ 
     void drawPlayControls();
     void drawPatternControls();
 
@@ -304,6 +311,9 @@ class OSSM {
     static void drawHelloTask(void *pvParameters);
 
     static void drawMenuTask(void *pvParameters);
+
+    static void drawServoDataTask(void *pvParameters);
+
 
     static void drawPlayControlsTask(void *pvParameters);
     static void drawPatternControlsTask(void *pvParameters);

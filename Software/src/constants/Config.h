@@ -34,6 +34,10 @@ namespace Config {
         // reached the end of its stroke. during "Homing".
         constexpr float sensorlessCurrentLimit = 1.5f;
 
+        // This is the measured torque that use to infer when the device has
+        // reached the end of its stroke. during "Homing".
+        constexpr int sensorlessTorqueLimit = 70;
+
         constexpr float stepsPerMM =
             motorStepPerRevolution / (pulleyToothCount * beltPitchMm);
 

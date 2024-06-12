@@ -11,6 +11,7 @@ enum Menu {
     UpdateOSSM,
     WiFiSetup,
     Help,
+    ServoData,
     Restart,
     NUM_OPTIONS
 };
@@ -21,6 +22,7 @@ static String menuStrings[Menu::NUM_OPTIONS] = {
     UserConfig::language.Update,
     UserConfig::language.WiFiSetup,
     UserConfig::language.GetHelp,
+    UserConfig::language.ModbusData,
     UserConfig::language.Restart};
 
 #endif  // OSSM_SOFTWARE_MENU_H

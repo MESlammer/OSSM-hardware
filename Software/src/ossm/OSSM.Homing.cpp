@@ -3,6 +3,7 @@
 #include "Events.h"
 #include "constants/UserConfig.h"
 #include "utils/analog.h"
+#include "services/modbus.h"
 
 namespace sml = boost::sml;
 using namespace sml;
@@ -66,31 +67,61 @@ void OSSM::startHomingTask(void *pvParameters) {
         if (msPassed > 30000) {
             ESP_LOGE("Homing", "Homing took too long. Check power and restart");
             ossm->errorMessage = UserConfig::language.HomingTookTooLong;
-            ossm->sm->process_event(Error{});
+            ossm->sm->process_event(ErrorEv{});
             break;
         }
 
         // measure the current analog value.
-        float current = getAnalogAveragePercent(
-                            SampleOnPin{Pins::Driver::currentSensorPin, 200}) -
-                        ossm->currentSensorOffset;
+        //float current = getAnalogAveragePercent(
+        //                    SampleOnPin{Pins::Driver::currentSensorPin, 200}) -
+        //                ossm->currentSensorOffset;
+        //
+        //ESP_LOGV("Homing", "Current: %f", current);
 
-        ESP_LOGV("Homing", "Current: %f", current);
+        
 
-        bool isCurrentOverLimit =
-            current > Config::Driver::sensorlessCurrentLimit;
+        //bool isCurrentOverLimit =
+        //    current > Config::Driver::sensorlessCurrentLimit;
 
-        if (!isCurrentOverLimit) {
-            vTaskDelay(1);
+        //if (!isCurrentOverLimit) {
+        //    vTaskDelay(1);
+        //    continue;
+        //}
+
+        //ESP_LOGD("Homing", "Current over limit: %f", current);
+
+
+        //shouldRequestModbusData =
+        //    shouldRequestModbusData || millis() - modbusDataLastUpdated > 200;
+        //requestModbus(DataTokens::TORQUE);
+        //int torque = getServoTorque();
+
+        int torque = requestModbusTorqueSync();
+
+        ESP_LOGV("Homing", "Torque: %d", torque);
+
+        bool isTorqueOverLimit =
+            torque > Config::Driver::sensorlessTorqueLimit;
+
+        if (!isTorqueOverLimit) {
+            vTaskDelay(5);
             continue;
         }
+        ESP_LOGD("Homing", "Torque over limit: %d", torque);
 
-        ESP_LOGD("Homing", "Current over limit: %f", current);
+        torque = 0;
         ossm->stepper->stopMove();
+
+        //vTaskDelay(500);
+        //servo.clearQueue();
 
         // step away from the hard stop, with your hands in the air!
         int32_t currentPosition = ossm->stepper->getCurrentPosition();
         ossm->stepper->moveTo(currentPosition - sign * 10_mm, true);
+
+        requestModbus(DataTokens::TORQUE);
+        torque = getServoTorque();
+        vTaskDelay(100);
 
         // measure and save the current position
         ossm->measuredStrokeSteps =
@@ -104,10 +135,16 @@ void OSSM::startHomingTask(void *pvParameters) {
         break;
     };
 
+    //servo.end();
+
+
     vTaskDelete(nullptr);
 }
 
 void OSSM::startHoming() {
+    reInitModbus();
+
+
     int stackSize = 10 * configMINIMAL_STACK_SIZE;
     xTaskCreatePinnedToCore(startHomingTask, "startHomingTask", stackSize, this,
                             configMAX_PRIORITIES - 1, &runHomingTaskH,

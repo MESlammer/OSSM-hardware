@@ -6,6 +6,11 @@
 #include "services/board.h"
 #include "services/display.h"
 #include "services/encoder.h"
+#include "services/modbus.h"
+
+#include "ModbusClientRTU.h"
+
+#include "Logging.h"
 
 /*
  *  ██████╗ ███████╗███████╗███╗   ███╗
@@ -26,7 +31,7 @@
 
 OSSM *ossm;
 
-OneButton button(Pins::Remote::encoderSwitch, false);
+OneButton button(Pins::Remote::encoderSwitch, true);
 
 void setup() {
     /** Board setup */
@@ -35,11 +40,15 @@ void setup() {
     /** Service setup */
     // Encoder
     initEncoder();
+
+    initModbus();
     // Display
     display.setBusClock(400000);
     display.begin();
 
     ossm = new OSSM(display, encoder);
+
+    //USBSerial.begin(115200);
 
     // link functions to be called on events.
     button.attachClick([]() { ossm->sm->process_event(ButtonPress{}); });
@@ -50,4 +59,5 @@ void setup() {
 void loop() {
     button.tick();
     ossm->wm.process();
+    //requestModbus();
 };

@@ -23,13 +23,13 @@ struct DoublePress {};
 
 struct Done {};
 
-struct Error {};
+struct ErrorEv {};
 
 // Definitions to make the table easier to read.
 static auto buttonPress = sml::event<ButtonPress>;
 static auto longPress = sml::event<LongPress>;
 static auto doublePress = sml::event<DoublePress>;
 static auto done = sml::event<Done>;
-static auto error = sml::event<Error>;
+static auto error = sml::event<ErrorEv>;
 
 #endif  // OSSM_SOFTWARE_EVENTS_H

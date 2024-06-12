@@ -3,6 +3,7 @@
 
 #include "constants/copy/en-us.h"
 #include "constants/copy/fr.h"
+#include "constants/copy/ru-ru.h"
 
 namespace UserConfig {
     // TODO: restore user overrides.

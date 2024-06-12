@@ -42,7 +42,8 @@ static const LanguageStruct enUs = {
         "Stroke depth increases per cycle; sensation sets count.",
         "Pauses between strokes; sensation adjusts length.",
         "Modifies length, maintains speed; sensation influences direction."
-    }
+    },
+    .ModbusData = "Modbus Data"
 };
 
 #endif  // OSSM_SOFTWARE_EN_US_H

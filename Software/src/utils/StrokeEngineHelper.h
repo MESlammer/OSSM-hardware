@@ -28,7 +28,7 @@ static motorProperties servoMotor{
         Config::Driver::motorStepPerRevolution /
         (Config::Driver::pulleyToothCount * Config::Driver::beltPitchMm),
     .invertDirection = true,
-    .enableActiveLow = true,
+    .enableActiveLow = false,
     .stepPin = Pins::Driver::motorStepPin,
     .directionPin = Pins::Driver::motorDirectionPin,
     .enablePin = Pins::Driver::motorEnablePin};

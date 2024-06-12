@@ -27,60 +27,60 @@ namespace Pins {
         constexpr int oledReset = -1;
 
         // Pin used by RGB LED
-        constexpr int ledPin = 25;
+        constexpr int ledPin = 36;
     }
 
     namespace Driver {
-        constexpr int currentSensorPin = 36;
+        constexpr int currentSensorPin = 4;
 
         // Pin that pulses on servo/stepper steps - likely labelled PUL on
         // drivers.
-        constexpr int motorStepPin = 14;
+        constexpr int motorStepPin = 42;
         // Pin connected to driver/servo step direction - likely labelled DIR on
         // drivers. N.b. to iHSV57 users - DIP switch #5 can be flipped to
         // invert motor direction entirely
-        constexpr int motorDirectionPin = 27;
+        constexpr int motorDirectionPin = 41;
         // Pin for motor enable - likely labelled ENA on drivers.
-        constexpr int motorEnablePin = 26;
+        constexpr int motorEnablePin = 40;
 
         // define the IO pin the emergency stop switch is connected to
-        constexpr int stopPin = 19;
+        constexpr int stopPin = 48;
         // define the IO pin where the limit(homingStart) switch(es) are
         // connected to (switches in series in normally open setup) Switches
         // wired from IO pin to ground.
-        constexpr int limitSwitchPin = 12;
+        constexpr int limitSwitchPin = 45;
     }
 
     namespace Wifi {
         // Pin for Wi-Fi reset button (optional)
-        constexpr int resetPin = 23;
+        constexpr int resetPin = 20;
         // Pin for the toggle for Wi-Fi control (Can be targeted alone if no
         // hardware toggle is required)
-        constexpr int controlTogglePin = 22;
+        constexpr int controlTogglePin = 21;
     }
 
     /** These are configured for the OSSM Remote - which has a screen, a
      * potentiometer and an encoder which clicks*/
     namespace Remote {
 
-        constexpr int speedPotPin = 34;
+        constexpr int speedPotPin = 5;
 
         // This switch occurs when you press the right button in.
         // With the current state of the code this will send out a "ButtonPress"
         // event automatically.
-        constexpr int encoderSwitch = 35;
+        constexpr int encoderSwitch = 15;
 
         // The rotary encoder requires at least two pins to function.
-        constexpr int encoderA = 18;
-        constexpr int encoderB = 5;
+        constexpr int encoderA = 6;
+        constexpr int encoderB = 7;
         constexpr int encoderPower =
             -1; /* Put -1 of Rotary encoder Vcc is connected directly to 3,3V;
                    else you can use declared output pin for powering rotary
                    encoder */
 
-        constexpr int displayData = 21;
-        constexpr int displayClock = 19;
-        constexpr int encoderStepsPerNotch = 2;
+        constexpr int displayData = 12;
+        constexpr int displayClock = 11;
+        constexpr int encoderStepsPerNotch = 4;
     }
 }
 
