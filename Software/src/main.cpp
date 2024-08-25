@@ -8,6 +8,8 @@
 #include "services/encoder.h"
 #include "services/modbus.h"
 
+#include <FastLED.h>
+
 #include "ModbusClientRTU.h"
 
 #include "Logging.h"
@@ -33,6 +35,8 @@ OSSM *ossm;
 
 OneButton button(Pins::Remote::encoderSwitch, true);
 
+CRGB leds [1];
+
 void setup() {
     /** Board setup */
     initBoard();
@@ -46,6 +50,22 @@ void setup() {
     display.setBusClock(400000);
     display.begin();
 
+    FastLED.addLeds<NEOPIXEL, Pins::Display::ledPin>(leds, 1);
+
+    leds[0] = CRGB::Red;
+    FastLED.show();
+    delay(500);
+    leds[0] = CRGB::Green;
+    FastLED.show();
+    delay(500);
+    leds[0] = CRGB::Blue;
+    FastLED.show();
+    delay(500);
+    // Now turn the LED off, then pause
+    leds[0] = CRGB::Black;
+    FastLED.show();
+    delay(500);
+
     ossm = new OSSM(display, encoder);
 
     //USBSerial.begin(115200);
@@ -54,6 +74,8 @@ void setup() {
     button.attachClick([]() { ossm->sm->process_event(ButtonPress{}); });
     button.attachDoubleClick([]() { ossm->sm->process_event(DoublePress{}); });
     button.attachLongPressStart([]() { ossm->sm->process_event(LongPress{}); });
+
+
 };
 
 void loop() {
