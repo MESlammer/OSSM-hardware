@@ -43,6 +43,15 @@ static const LanguageStruct enUs = {
         "Pauses between strokes; sensation adjusts length.",
         "Modifies length, maintains speed; sensation influences direction."
     },
+    .StrokeEngineNames = {
+        "Simple Stroke",
+        "Teasing Pounding",
+        "Robo Stroke",
+        "Half'n'Half",
+        "Deeper",
+        "Stop'n'Go",
+        "Insist"
+    },
     .ModbusData = "Modbus Data"
 };
 

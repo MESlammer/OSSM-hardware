@@ -6,6 +6,7 @@
 #include "services/board.h"
 #include "services/display.h"
 #include "services/encoder.h"
+#include "services/stepper.h"
 #include "services/modbus.h"
 
 #include <FastLED.h>
@@ -31,7 +32,7 @@
  * contribute, fork, branch and share!
  */
 
-OSSM *ossm;
+OSSM* ossm;
 
 OneButton button(Pins::Remote::encoderSwitch, false);
 
@@ -67,10 +68,7 @@ void setup() {
     FastLED.show();
     delay(500);
 
-    ossm = new OSSM(display, encoder);
-
-    //USBSerial.begin(115200);
-
+    ossm = new OSSM(display, encoder, stepper);
     // link functions to be called on events.
     button.attachClick([]() { ossm->sm->process_event(ButtonPress{}); });
     button.attachDoubleClick([]() { ossm->sm->process_event(DoublePress{}); });

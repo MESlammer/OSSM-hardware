@@ -2,6 +2,7 @@
 
 [![Discord](https://img.shields.io/discord/559409652425687041)](https://discord.gg/wrENMKb3)
 
+
 OSSM (pronounced like "Awesome") is a user friendly every day sex machine for the people.
 
 This project aims to help people curious about sex machines explore their interest. A second objective is optionally
@@ -16,6 +17,14 @@ machine.
 <p align="center">
 <img src="https://user-images.githubusercontent.com/12459679/200219198-df577cbc-8503-47af-bbc8-9cb65de7ea49.jpg" width="750">
 </p>
+
+### Is it actually Open Source?
+
+It is one of a kind Certified, Actual, Factual, Open Source
+
+[<img width="287" alt="image" src="https://github.com/user-attachments/assets/af168015-b80a-4464-8778-e391278d9748">](https://certification.oshwa.org/ca000057.html)
+
+
 
 ## Getting Started
 
@@ -43,10 +52,7 @@ Code. [Reference for working with the code in PlatformIO here](OSSM PlatformIO R
 We recommend using
 the [Research and Desire Reference Board](https://shop.researchanddesire.com/products/ossm-reference-board) as Do It
 Yourself by someone without extensive electronics knowledge creates a lot of support overhead. This code is still
-arduino IDE compatible but offers many times better performance. Web based control is coming soon. A proof of concept
-can be found at [https://app.researchanddesire.com/ossm](https://app.researchanddesire.com/ossm), however modifications need to be made in order to use this proof
-of concept web control.
-
+arduino IDE compatible but offers many times better performance. Web based control is projected to be available in Feb 2025.  
 ### Eagle PCB
 
 Simple PCB to power an ESP32 (wifi enabled microcontroller) from 24V and breakout the pins for the OSSM control
@@ -156,13 +162,13 @@ Materials (BOM)
 
     [Amazon - CA](https://www.amazon.ca/MGN12H-Stainless-Carriage-Precision-Machine/dp/B09TWKWCZR)
 
-    [Amazon - US](https://www.amazon.com/Twotrees-Sliding-Guideway-Bearing-Printer/dp/B07SPQZ383)
+    [Amazon - US](https://www.amazon.com/ReliaBot-Linear-Carriage-Printer-Machine/dp/B07B4DWWZC)
 
     [Aliexpress - AU](https://www.aliexpress.com/item/32840113910.html)
 
     - Minimum 250mm in length, suggested 350mm
     - Rail length = desired stroke + 180mm
-    - Must be MGN12**H** rail - H is a longer car than C which gives greater stability.
+    - Must be MGN**12H** rail - H is a longer car than C which gives greater stability. 12 indicates 12mm rail width.
 
 7.  **Power Supply**: 24 volt 4-5 amp w/ 2.1mm barrel DC plug
 
