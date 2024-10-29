@@ -65,7 +65,7 @@ namespace Pins {
      * potentiometer and an encoder which clicks*/
     namespace Remote {
 
-        constexpr int speedPotPin = 5;
+        constexpr int speedPotPin = 7;
 
         // This switch occurs when you press the right button in.
         // With the current state of the code this will send out a "ButtonPress"
@@ -80,10 +80,10 @@ namespace Pins {
                    else you can use declared output pin for powering rotary
                    encoder */
 
-        constexpr int displayData = 6;
-        constexpr int displayClock = 7;
+        constexpr int displayData = 5;
+        constexpr int displayClock = 6;
         constexpr int encoderStepsPerNotch = 4;
     }
 }
-
+//first version of manufactured remote board has a error in schematic, displayData swapped with speedPotPin
 #endif  // OSSM_SOFTWARE_PINS_CPP

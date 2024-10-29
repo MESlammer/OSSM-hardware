@@ -33,7 +33,7 @@
 
 OSSM *ossm;
 
-OneButton button(Pins::Remote::encoderSwitch, true);
+OneButton button(Pins::Remote::encoderSwitch, false);
 
 CRGB leds [1];
 
@@ -47,6 +47,7 @@ void setup() {
 
     initModbus();
     // Display
+    display.setI2CAddress(0x3C*2);
     display.setBusClock(400000);
     display.begin();
 

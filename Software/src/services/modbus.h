@@ -129,7 +129,7 @@ static int requestModbusTorqueSync() {
 
 static void initModbus() {
     RTUutils::prepareHardwareSerial(Serial2);
-    Serial2.begin(57600, SERIAL_8E1, GPIO_NUM_9, GPIO_NUM_10);
+    Serial2.begin(57600, SERIAL_8E1, GPIO_NUM_10, GPIO_NUM_9);
     // Serial2.println("serial 2 works");
 
     // Set up ModbusRTU client.

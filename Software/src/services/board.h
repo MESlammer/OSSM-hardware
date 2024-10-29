@@ -14,11 +14,11 @@ void initBoard() {
     Serial.begin(115200);
 
     pinMode(Pins::Remote::encoderSwitch,
-            INPUT_PULLUP);  // Rotary Encoder Pushbutton
-    pinMode(Pins::Remote::encoderA,
-            INPUT_PULLUP);
-    pinMode(Pins::Remote::encoderB,
-            INPUT_PULLUP);
+            INPUT_PULLDOWN);  // Rotary Encoder Pushbutton
+    //pinMode(Pins::Remote::encoderA,
+    //        INPUT_PULLUP);
+    //pinMode(Pins::Remote::encoderB,
+    //        INPUT_PULLUP);
     pinMode(Pins::Driver::motorEnablePin, OUTPUT);
     pinMode(Pins::Wifi::resetPin, INPUT_PULLDOWN);
     // TODO: Remove wifi toggle pin
