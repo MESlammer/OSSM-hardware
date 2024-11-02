@@ -1,0 +1,15 @@
+*.*bak
+*.*lck
+PCB Files/boards/**/*.xml
+PCB Files/boards/**/*_bom.txt
+PCB Files/boards/**/*.kicad_prl
+PCB Files/boards/**/*-backups
+PCB Files/boards/**/pdf
+
+PCB Files/boards/**/STEP
+
+PCB Files/packages3D/*.ipt
+PCB Files/packages3D/OldVersions
+
+
+fp-info-cache
